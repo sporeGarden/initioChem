@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+#
+# ecoBin compliance: ban C dependencies for hermetic deployment.
+# initioChem must be musl-static linkable with zero system library deps.
+
+[advisories]
+vulnerability = "deny"
+unmaintained = "warn"
+
+[licenses]
+unlicensed = "deny"
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Unicode-DFS-2016",
+    "Zlib",
+]
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+
+# ecoBin: no C dependencies (hermetic musl-static builds)
+[[bans.deny]]
+name = "openssl-sys"
+[[bans.deny]]
+name = "libz-sys"
+[[bans.deny]]
+name = "curl-sys"
+[[bans.deny]]
+name = "libgit2-sys"
+[[bans.deny]]
+name = "libssh2-sys"
